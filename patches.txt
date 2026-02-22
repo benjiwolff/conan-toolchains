@@ -1,0 +1,2 @@
+These patches have not made it upstream yet (or never will):
+* emsdk 5.0.1 conan recipe https://github.com/conan-io/conan-toolchains/pull/11
