@@ -54,6 +54,12 @@ class EmSDKConan(ConanFile):
     def package(self):
         copy(self, "LICENSE", src=self.source_folder, dst=os.path.join(self.package_folder, "licenses"))
         copy(self, "*", src=self.source_folder, dst=os.path.join(self.package_folder, "bin"))
+        replace_in_file(
+            self,
+            os.path.join(self.package_folder, "bin/upstream/emscripten/emrun.py"),
+            "if MACOS and ('safari' in browser_exe.lower() or browser_exe == 'open'):",
+            "if MACOS and 'safari' in browser_exe.lower():",
+        )
 
     def finalize(self):
         copy(self, "*", src=self.immutable_package_folder, dst=self.package_folder)
