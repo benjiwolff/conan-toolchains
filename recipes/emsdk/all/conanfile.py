@@ -3,7 +3,7 @@ from pathlib import Path
 
 from conan import ConanFile
 from conan.tools.env import VirtualBuildEnv
-from conan.tools.files import chdir, copy, get
+from conan.tools.files import chdir, copy, get, replace_in_file
 from conan.tools.layout import basic_layout
 
 required_conan_version = ">=2.1"
