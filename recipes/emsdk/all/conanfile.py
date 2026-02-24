@@ -66,6 +66,12 @@ class EmSDKConan(ConanFile):
                 search="_VERSION = 'v20251002.162335'",
                 replace="_VERSION = 'v20260219.200501'",
                 )
+        replace_in_file(
+                self,
+                file_path=os.path.join(self.package_folder, "bin/upstream/emscripten/tools/ports/emdawnwebgpu.py"),
+                search="SHA512 = 'ed15672c2c495a77c764929e6979f4e155bf8b9c46dee5b0f234f3208a708bc2b846d89eef345b725d03454b56d549531f48fc84ff2afe7627d14115893b0fb0'",
+                replace="SHA512 = '67f64ae3263e2111ca5d71b0ea69f0fbf42a0a7cd40ada66c3975e031f9af07411e1390a8b52fec08d563a99612ca6a3b3f75115191253d41fca18b8f3494f9c'",
+                )
 
     def finalize(self):
         copy(self, "*", src=self.immutable_package_folder, dst=self.package_folder)
