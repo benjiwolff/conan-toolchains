@@ -60,6 +60,12 @@ class EmSDKConan(ConanFile):
             "if MACOS and ('safari' in browser_exe.lower() or browser_exe == 'open'):",
             "if MACOS and 'safari' in browser_exe.lower():",
         )
+        replace_in_file(
+                self,
+                file_path=os.path.join(self.package_folder, "bin/upstream/emscripten/tools/ports/emdawnwebgpu.py"),
+                search="_VERSION = 'v20251002.162335'",
+                replace="_VERSION = 'v20260219.200501'",
+                )
 
     def finalize(self):
         copy(self, "*", src=self.immutable_package_folder, dst=self.package_folder)
