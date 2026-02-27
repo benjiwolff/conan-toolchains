@@ -3,7 +3,7 @@ from pathlib import Path
 
 from conan import ConanFile
 from conan.tools.env import VirtualBuildEnv
-from conan.tools.files import chdir, copy, get, replace_in_file
+from conan.tools.files import chdir, copy, get, replace_in_file, download
 from conan.tools.layout import basic_layout
 
 required_conan_version = ">=2.1"
@@ -50,10 +50,9 @@ class EmSDKConan(ConanFile):
             emsdk = "emsdk.bat" if self.settings_build.os == "Windows" else "./emsdk"
             self.run(f"{emsdk} install latest")
             self.run(f"{emsdk} activate latest")
-        get(self,
+        download(self,
             url="https://github.com/google/dawn/releases/download/v20260219.200501/emdawnwebgpu-v20260219.200501.remoteport.py",
-            destination=os.path.join(self.source_folder, "upstream/emscripten/tools/ports"),
-            filename="emdawnwebgpu.py")
+            filename=os.path.join(self.source_folder, "upstream/emscripten/tools/ports/emdawnwebgpu.py"))
 
     def package(self):
         copy(self, "LICENSE", src=self.source_folder, dst=os.path.join(self.package_folder, "licenses"))
